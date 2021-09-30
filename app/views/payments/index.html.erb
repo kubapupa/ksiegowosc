@@ -1,0 +1,49 @@
+<%= render "layouts/navigation" %>
+<% if @payments.count > 0 %>
+    <p class="mt-5 text-center mb-5">
+        <%= link_to  "Wyczysc", payments_path, method: :delete, class: "clear-button" %>
+    </p>
+    <% @payments.each do |payment| %>
+        <div class="card text-center">
+            <div class="card-body">
+            <%= payment.username %> | <%= payment.value %> | <%= payment.created_at.to_formatted_s(:short) %>
+            </div>
+        </div>
+    <% end %>
+<% else %>
+<h1 class="text-center mt-5">
+    <%= render html: "Brak zakupow" %>
+</h1>
+<% end %>
+<h2 class="text-center mt-5">
+    Lacznie wydane we 3: <%= sum = (@payments.sum(:value)).to_f.round(2) %>
+    <br>
+    Na osobe wychodzi: <%= (sum / 3).round(2) %>
+</h2>
+<hr>
+<div class="mt-5 text-center mb-5" id="info">
+Arek zaplacil: <%= arek = Payment.where(username: "Arek").sum(:value).to_f.round(2) %>
+<br>
+Dudek zaplacil: <%= dudek = Payment.where(username: "Dudek").sum(:value).to_f.round(2) %>
+<br>
+Mlody zaplacil: <%= mlody = Payment.where(username: "Mlody").sum(:value).to_f.round(2) %>
+<hr>
+<% if ((sum / 3).round(2) - arek.to_f).round(2) < 0 %>
+    Arkowi nalezy przelac <%= -((sum / 3).round(2) - arek.to_f).round(2) %>
+<% else %>
+    Arek musi przelac <%= ((sum / 3).round(2) - arek.to_f).round(2) %>
+<% end%>
+<br>
+<% if ((sum / 3).round(2) - dudek.to_f).round(2) < 0 %>
+    Dudkowi nalezy przelac <%= -((sum / 3).round(2) - dudek.to_f).round(2) %>
+<% else %>
+    Dudek musi przelac <%= ((sum / 3).round(2) - dudek.to_f).round(2) %>
+<% end%>
+<%=  %>
+<br>
+<% if ((sum / 3).round(2) - mlody.to_f).round(2) < 0 %>
+    Mlodemu nalezy przelac <%= -((sum / 3).round(2) - mlody.to_f).round(2) %>
+<% else %>
+    Mlody musi przelac <%= ((sum / 3).round(2) - mlody.to_f).round(2) %>
+<% end%>
+</div>

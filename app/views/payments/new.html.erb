@@ -1,0 +1,12 @@
+<%= render "layouts/navigation" %>
+
+<%= form_with model: Payment do |form| %>
+  <div class="mb-3 mt-3 text-center">
+    <%= form.label :value, "Kwota", style: "font-weight: bolder" %>
+    <%= form.number_field :value, step: "0.01" %>
+    <hr>
+    <%= form.select :username, options_for_select([['Arek', 'Arek'], ['Dudek', 'Dudek'], ['Mlody', 'Mlody']], nil) %>
+    <hr>
+    <%= form.submit "Dodaj wpis" %>
+  </div>
+<% end %>

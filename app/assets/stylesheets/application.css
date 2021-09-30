@@ -1,0 +1,29 @@
+body{
+    background: cornflowerblue;
+}
+.card{
+    width: 30%;
+    margin-left: 35%;
+    margin-top: 1%;
+    background: salmon;
+    font-weight: bolder;
+    box-shadow: 5px 5px 5px rgb(163, 74, 64);
+}
+.clear-button{
+    color: white;
+    text-decoration: none;
+    padding: 1%;
+    border-radius: 5px;
+    background: salmon;
+    box-shadow: 5px 5px 5px rgb(163, 74, 64);
+    transition-duration: .5s;
+}
+.clear-button:hover{
+    color: white;
+    background: rgb(163, 74, 64);
+    box-shadow: 5px 5px 5px rgb(107, 48, 42);
+}
+#info{
+    font-weight: bolder;
+    font-size: larger;
+}
